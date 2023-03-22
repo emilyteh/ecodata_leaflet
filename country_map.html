@@ -7,7 +7,7 @@
     <title> Countries </title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css"
         integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin="" />
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" ></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"
         integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
     <script src="australia.js" crossorigin=""></script>
@@ -73,21 +73,25 @@
     <h1 style="text-align:center;"> Sustainable Countries </h1>
     <div id="map" style="width: 1360px;height: 600px;"></div>
     <script>
+
         var map = L.map('map').setView([0, 0], 2.2)
         L.tileLayer("https://api.maptiler.com/maps/winter/{z}/{x}/{y}.png?key=dqX9xw3VZr9NNQXAWZmB", {
             attribute: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
         }).addTo(map);
-        
-        
+
+
 
         L.geoJSON(canada, {
             onEachFeature: function (feature, layer) {
-                
-                
-                let url = "https://api.v2.emissions-api.org/api/v2/methane/statistics.json?country=CAN&interval=year&begin=2021-01-01&end=2021-12-31&limit=10&offset=0
-";
+
+
+                let url = "https://api.v2.emissions-api.org/api/v2/methane/statistics.json?country=CAN&interval=year&begin=2021-01-01&end=2021-12-31&limit=10&offset=0";
                 // Declare a boolean flag that we can use to cancel the API request.
                 let ignoreStaleRequest = false;
+
+                fetch(url)
+                    .then((response) => response.json())
+                    .then((data) => console.log("data:" + data));
 
                 // Call REST API to get the post's information
                 fetch(url, { credentials: "same-origin" })
@@ -99,15 +103,14 @@
                         // If ignoreStaleRequest was set to true, we want to ignore the results of the
                         // the request. Otherwise, update the state to trigger a new render.
                         if (!ignoreStaleRequest) {
-                            console.log(data);
-                            var newData = "Average methane emissions are:" + data["value"]["average"];
+                            var newData = "Average methane emissions are:" + JSON.stringify(data[0]["value"]["average"]);
                             layer.bindPopup(canText + newData)
                         }
                     })
                     .catch((error) => console.log(error));
 
-                    feature.properties.id = "canText";
-                }
+                feature.properties.id = "canText";
+            }
 
 
             // layer.markerID = feature.properties.id;
@@ -226,22 +229,22 @@
         L.geoJSON(russia, {
             onEachFeature: function (feature, layer) {
                 feature.properties.id = "russiaID";
-                layer.bindPopup(russiaText+"id is:"+feature.properties.id);
+                layer.bindPopup(russiaText + "id is:" + feature.properties.id);
             }
         }).addTo(map);
-        
-//         geoJsonLayer.eachLayer(function (layer) {
-//             layer._path.id = 'feature-' + layer.feature.properties.id;
-//         });
-        
-//         function onEachFeature(feature, layer) {
-//             layer.on('click', function (e) {
-//                 alert(feature.properties.popupContent);
-//                 //or
-//                 alert(feature.properties.id);
-//             });
-//         }
-        
+
+        //         geoJsonLayer.eachLayer(function (layer) {
+        //             layer._path.id = 'feature-' + layer.feature.properties.id;
+        //         });
+
+        //         function onEachFeature(feature, layer) {
+        //             layer.on('click', function (e) {
+        //                 alert(feature.properties.popupContent);
+        //                 //or
+        //                 alert(feature.properties.id);
+        //             });
+        //         }
+
         let url1 = "https://api.sealevelsensors.org/v1.0/Things(3)";
         // Declare a boolean flag that we can use to cancel the API request.
         let ignoreStaleRequest = false;
@@ -257,23 +260,24 @@
                 // the request. Otherwise, update the state to trigger a new render.
                 if (!ignoreStaleRequest) {
                     console.log(data);
-                    document.getElementById("canID").setContent() =  "hello" + canText + data["description"];
-                    
+                    document.getElementById("canID").setContent() = "hello" + canText + data["description"];
+
                     document.getElementById("id1").innerHTML = data["Datastreams@iot.navigationLink"];
                 }
             })
             .catch((error) => console.log(error));
     </script>
-    
-    <p id = "id1"><p>
 
-    <button class="button button1" onclick="location.href='heatmaps.html'">
-        Heatmaps
-    </button>
-    <br>
-    <button class="button button1" onclick="location.href='index.html'">
-        Back to main page
-    </button>
+    <p id="id1">
+    <p>
+
+        <button class="button button1" onclick="location.href='heatmaps.html'">
+            Heatmaps
+        </button>
+        <br>
+        <button class="button button1" onclick="location.href='index.html'">
+            Back to main page
+        </button>
 </body>
 
 </html>
