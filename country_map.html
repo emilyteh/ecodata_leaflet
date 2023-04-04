@@ -96,7 +96,7 @@
 
                         console.log("Data is:"+data[0]["value"])
 
-                        var newData = "Average methane emissions are:" + data[0]["value"]["average"];
+                        var newData = "Average methane emissions are:" + JSON.stringify(Math.trunc(data[0]["value"]["average"])) + " gm<sup>-2</sup>d<sup>-1</sup>";
                         layer.bindPopup(textvariablename + newData)
                     }
                 })
