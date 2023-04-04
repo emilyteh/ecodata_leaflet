@@ -78,9 +78,9 @@
         L.tileLayer("https://api.maptiler.com/maps/winter/{z}/{x}/{y}.png?key=dqX9xw3VZr9NNQXAWZmB", {
             attribute: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
         }).addTo(map);
-        
+
         // function to add info 
-        function addApi(urlVar, textvariablename, layer){
+        function addApi(urlVar, textvariablename, layer) {
             let url = "https://api.v2.emissions-api.org/api/v2/methane/statistics.json?country=" + urlVar + "&interval=year&begin=2021-01-01&end=2021-12-31&limit=10&offset=0";
             fetch(url, { credentials: "same-origin" })
                 .then((response) => {
@@ -94,7 +94,7 @@
                         console.log(data);
                         console.log("WOOHOOO");
 
-                        console.log("Data is:"+data[0]["value"])
+                        console.log("Data is:" + data[0]["value"])
 
                         var newData = "Average methane emissions are:" + JSON.stringify(Math.trunc(data[0]["value"]["average"])) + " gm<sup>-2</sup>d<sup>-1</sup>";
                         layer.bindPopup(textvariablename + newData)
@@ -102,18 +102,18 @@
                 })
                 .catch((error) => console.log(error));
         }
-        
+
         var JSON_name_list = [canada];
         var country_code = ["CAN"];
         var text_var_name = [canText];
-        
-        function addCountries(countryList, countryCodeList, text_var_name){
+
+        function addCountries(countryList, countryCodeList, text_var_name) {
             for (let i = 0; i < countryList.length; i++) {
                 L.geoJSON(JSON_name_list[i], {
                     onEachFeature: function (feature, layer) {
 
                         let url = countryCodeList[i];
-                        console.log(i,"<-id, tvn->", text_var_name[i]);
+                        console.log(i, "<-id, tvn->", text_var_name[i]);
                         addApi(url, text_var_name[i], layer);
                         //feature.properties.id = "canText";
 
@@ -230,7 +230,7 @@
         }).addTo(map);
 
         L.geoJSON(iran, {
-            nEachFeature: function (feature, layer) {
+            onEachFeature: function (feature, layer) {
                 let url = "https://api.v2.emissions-api.org/api/v2/methane/statistics.json?countryIRN&interval=year&begin=2021-01-01&end=2021-12-31&limit=10&offset=0";
                 // Declare a boolean flag that we can use to cancel the API request.
                 let ignoreStaleRequest = false;
