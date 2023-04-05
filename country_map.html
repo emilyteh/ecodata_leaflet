@@ -96,16 +96,16 @@
 
                         console.log("Data is:" + data[0]["value"])
 
-                        var newData = "Average methane emissions are:" + JSON.stringify(Math.trunc(data[0]["value"]["average"])) + " gm<sup>-2</sup>d<sup>-1</sup>";
+                        var newData = JSON.stringify(Math.trunc(data[0]["value"]["average"])) + " gm<sup>-2</sup>d<sup>-1</sup>";
                         layer.bindPopup(textvariablename + newData)
                     }
                 })
                 .catch((error) => console.log(error));
         }
 
-        var JSON_name_list = [canada, spain, australia];
-        var country_code = ["CAN","ESP", "AUS"];
-        var text_var_name = [canText, spainText, austText];
+        var JSON_name_list = [canada, spain, australia, iran, senegal, japan, egypt, germany, china, chile, kenya, brazil, nicaragua, usa, india, nigeria, russia];
+        var country_code = ["CAN","ESP", "AUS", "IRN", "SEN", "JPN", "EGY", "DEU", "CN", "CHL", "KEN", "BRA", "NIC", "USA", "IND", "NGA", "RUS"];
+        var text_var_name = [canText, spainText, austText, iranText, senegalText, japanText, egyptText, gerText, chinaText, chileText, kenyaText, brazilText, nicaraguaText, usaText, indiaText, nigeriaText, russiaText];
 
         function addCountries(countryList, countryCodeList, text_var_name) {
             for (let i = 0; i < countryList.length; i++) {
@@ -229,305 +229,305 @@
 //             }
 //         }).addTo(map);
 
-        L.geoJSON(iran, {
-            onEachFeature: function (feature, layer) {
-                let url = "https://api.v2.emissions-api.org/api/v2/methane/statistics.json?countryIRN&interval=year&begin=2021-01-01&end=2021-12-31&limit=10&offset=0";
-                // Declare a boolean flag that we can use to cancel the API request.
-                let ignoreStaleRequest = false;
+//         L.geoJSON(iran, {
+//             onEachFeature: function (feature, layer) {
+//                 let url = "https://api.v2.emissions-api.org/api/v2/methane/statistics.json?countryIRN&interval=year&begin=2021-01-01&end=2021-12-31&limit=10&offset=0";
+//                 // Declare a boolean flag that we can use to cancel the API request.
+//                 let ignoreStaleRequest = false;
 
-                fetch(url)
-                    .then((response) => response.json())
-                    .then((data) => console.log("data:" + data));
+//                 fetch(url)
+//                     .then((response) => response.json())
+//                     .then((data) => console.log("data:" + data));
 
-                // Call REST API to get the post's information
-                fetch(url, { credentials: "same-origin" })
-                    .then((response) => {
-                        if (!response.ok) throw Error(response.statusText);
-                        return response.json();
-                    })
-                    .then((data) => {
-                        // If ignoreStaleRequest was set to true, we want to ignore the results of the
-                        // the request. Otherwise, update the state to trigger a new render.
-                        if (!ignoreStaleRequest) {
-                            var newData = JSON.stringify(Math.trunc(data[0]["value"]["average"])) + " gm<sup>-2</sup>d<sup>-1</sup>";
-                            layer.bindPopup(iranText + newData)
-                        }
-                    })
-                    .catch((error) => console.log(error));
+//                 // Call REST API to get the post's information
+//                 fetch(url, { credentials: "same-origin" })
+//                     .then((response) => {
+//                         if (!response.ok) throw Error(response.statusText);
+//                         return response.json();
+//                     })
+//                     .then((data) => {
+//                         // If ignoreStaleRequest was set to true, we want to ignore the results of the
+//                         // the request. Otherwise, update the state to trigger a new render.
+//                         if (!ignoreStaleRequest) {
+//                             var newData = JSON.stringify(Math.trunc(data[0]["value"]["average"])) + " gm<sup>-2</sup>d<sup>-1</sup>";
+//                             layer.bindPopup(iranText + newData)
+//                         }
+//                     })
+//                     .catch((error) => console.log(error));
 
-                feature.properties.id = "iranText";
-            }
-        }).addTo(map);
+//                 feature.properties.id = "iranText";
+//             }
+//         }).addTo(map);
 
-        L.geoJSON(senegal, {
-            onEachFeature: function (feature, layer) {
-                let url = "https://api.v2.emissions-api.org/api/v2/methane/statistics.json?countrySEN&interval=year&begin=2021-01-01&end=2021-12-31&limit=10&offset=0";
-                // Declare a boolean flag that we can use to cancel the API request.
-                let ignoreStaleRequest = false;
+//         L.geoJSON(senegal, {
+//             onEachFeature: function (feature, layer) {
+//                 let url = "https://api.v2.emissions-api.org/api/v2/methane/statistics.json?countrySEN&interval=year&begin=2021-01-01&end=2021-12-31&limit=10&offset=0";
+//                 // Declare a boolean flag that we can use to cancel the API request.
+//                 let ignoreStaleRequest = false;
 
-                fetch(url)
-                    .then((response) => response.json())
-                    .then((data) => console.log("data:" + data));
+//                 fetch(url)
+//                     .then((response) => response.json())
+//                     .then((data) => console.log("data:" + data));
 
-                // Call REST API to get the post's information
-                fetch(url, { credentials: "same-origin" })
-                    .then((response) => {
-                        if (!response.ok) throw Error(response.statusText);
-                        return response.json();
-                    })
-                    .then((data) => {
-                        // If ignoreStaleRequest was set to true, we want to ignore the results of the
-                        // the request. Otherwise, update the state to trigger a new render.
-                        if (!ignoreStaleRequest) {
-                            var newData = JSON.stringify(Math.trunc(data[0]["value"]["average"])) + " gm<sup>-2</sup>d<sup>-1</sup>";
-                            layer.bindPopup(senegalText + newData)
-                        }
-                    })
-                    .catch((error) => console.log(error));
+//                 // Call REST API to get the post's information
+//                 fetch(url, { credentials: "same-origin" })
+//                     .then((response) => {
+//                         if (!response.ok) throw Error(response.statusText);
+//                         return response.json();
+//                     })
+//                     .then((data) => {
+//                         // If ignoreStaleRequest was set to true, we want to ignore the results of the
+//                         // the request. Otherwise, update the state to trigger a new render.
+//                         if (!ignoreStaleRequest) {
+//                             var newData = JSON.stringify(Math.trunc(data[0]["value"]["average"])) + " gm<sup>-2</sup>d<sup>-1</sup>";
+//                             layer.bindPopup(senegalText + newData)
+//                         }
+//                     })
+//                     .catch((error) => console.log(error));
 
-                feature.properties.id = "senegalText";
-            }
-        }).addTo(map);
+//                 feature.properties.id = "senegalText";
+//             }
+//         }).addTo(map);
 
-        L.geoJSON(japan, {
-            onEachFeature: function (feature, layer) {
-                let url = "https://api.v2.emissions-api.org/api/v2/methane/statistics.json?countryJPN&interval=year&begin=2021-01-01&end=2021-12-31&limit=10&offset=0";
-                // Declare a boolean flag that we can use to cancel the API request.
-                let ignoreStaleRequest = false;
+//         L.geoJSON(japan, {
+//             onEachFeature: function (feature, layer) {
+//                 let url = "https://api.v2.emissions-api.org/api/v2/methane/statistics.json?countryJPN&interval=year&begin=2021-01-01&end=2021-12-31&limit=10&offset=0";
+//                 // Declare a boolean flag that we can use to cancel the API request.
+//                 let ignoreStaleRequest = false;
 
-                fetch(url)
-                    .then((response) => response.json())
-                    .then((data) => console.log("data:" + data));
+//                 fetch(url)
+//                     .then((response) => response.json())
+//                     .then((data) => console.log("data:" + data));
 
-                // Call REST API to get the post's information
-                fetch(url, { credentials: "same-origin" })
-                    .then((response) => {
-                        if (!response.ok) throw Error(response.statusText);
-                        return response.json();
-                    })
-                    .then((data) => {
-                        // If ignoreStaleRequest was set to true, we want to ignore the results of the
-                        // the request. Otherwise, update the state to trigger a new render.
-                        if (!ignoreStaleRequest) {
-                            var newData = JSON.stringify(Math.trunc(data[0]["value"]["average"])) + " gm<sup>-2</sup>d<sup>-1</sup>";
-                            layer.bindPopup(japanText + newData)
-                        }
-                    })
-                    .catch((error) => console.log(error));
+//                 // Call REST API to get the post's information
+//                 fetch(url, { credentials: "same-origin" })
+//                     .then((response) => {
+//                         if (!response.ok) throw Error(response.statusText);
+//                         return response.json();
+//                     })
+//                     .then((data) => {
+//                         // If ignoreStaleRequest was set to true, we want to ignore the results of the
+//                         // the request. Otherwise, update the state to trigger a new render.
+//                         if (!ignoreStaleRequest) {
+//                             var newData = JSON.stringify(Math.trunc(data[0]["value"]["average"])) + " gm<sup>-2</sup>d<sup>-1</sup>";
+//                             layer.bindPopup(japanText + newData)
+//                         }
+//                     })
+//                     .catch((error) => console.log(error));
 
-                feature.properties.id = "japanText";
-            }
-        }).addTo(map);
+//                 feature.properties.id = "japanText";
+//             }
+//         }).addTo(map);
 
-        L.geoJSON(egypt, {
-            onEachFeature: function (feature, layer) {
-                let url = "https://api.v2.emissions-api.org/api/v2/methane/statistics.json?countryEGY&interval=year&begin=2021-01-01&end=2021-12-31&limit=10&offset=0";
-                // Declare a boolean flag that we can use to cancel the API request.
-                let ignoreStaleRequest = false;
+//         L.geoJSON(egypt, {
+//             onEachFeature: function (feature, layer) {
+//                 let url = "https://api.v2.emissions-api.org/api/v2/methane/statistics.json?countryEGY&interval=year&begin=2021-01-01&end=2021-12-31&limit=10&offset=0";
+//                 // Declare a boolean flag that we can use to cancel the API request.
+//                 let ignoreStaleRequest = false;
 
-                fetch(url)
-                    .then((response) => response.json())
-                    .then((data) => console.log("data:" + data));
+//                 fetch(url)
+//                     .then((response) => response.json())
+//                     .then((data) => console.log("data:" + data));
 
-                // Call REST API to get the post's information
-                fetch(url, { credentials: "same-origin" })
-                    .then((response) => {
-                        if (!response.ok) throw Error(response.statusText);
-                        return response.json();
-                    })
-                    .then((data) => {
-                        // If ignoreStaleRequest was set to true, we want to ignore the results of the
-                        // the request. Otherwise, update the state to trigger a new render.
-                        if (!ignoreStaleRequest) {
-                            var newData = JSON.stringify(Math.trunc(data[0]["value"]["average"])) + " gm<sup>-2</sup>d<sup>-1</sup>";
-                            layer.bindPopup(egyptText + newData + egyptExtra)
-                        }
-                    })
-                    .catch((error) => console.log(error));
+//                 // Call REST API to get the post's information
+//                 fetch(url, { credentials: "same-origin" })
+//                     .then((response) => {
+//                         if (!response.ok) throw Error(response.statusText);
+//                         return response.json();
+//                     })
+//                     .then((data) => {
+//                         // If ignoreStaleRequest was set to true, we want to ignore the results of the
+//                         // the request. Otherwise, update the state to trigger a new render.
+//                         if (!ignoreStaleRequest) {
+//                             var newData = JSON.stringify(Math.trunc(data[0]["value"]["average"])) + " gm<sup>-2</sup>d<sup>-1</sup>";
+//                             layer.bindPopup(egyptText + newData + egyptExtra)
+//                         }
+//                     })
+//                     .catch((error) => console.log(error));
 
-                feature.properties.id = "egyptText";
-            }
-        }).addTo(map);
+//                 feature.properties.id = "egyptText";
+//             }
+//         }).addTo(map);
 
-        L.geoJSON(germany, {
-            onEachFeature: function (feature, layer) {
-                let url = "https://api.v2.emissions-api.org/api/v2/methane/statistics.json?countryDEU&interval=year&begin=2021-01-01&end=2021-12-31&limit=10&offset=0";
-                // Declare a boolean flag that we can use to cancel the API request.
-                let ignoreStaleRequest = false;
+//         L.geoJSON(germany, {
+//             onEachFeature: function (feature, layer) {
+//                 let url = "https://api.v2.emissions-api.org/api/v2/methane/statistics.json?countryDEU&interval=year&begin=2021-01-01&end=2021-12-31&limit=10&offset=0";
+//                 // Declare a boolean flag that we can use to cancel the API request.
+//                 let ignoreStaleRequest = false;
 
-                fetch(url)
-                    .then((response) => response.json())
-                    .then((data) => console.log("data:" + data));
+//                 fetch(url)
+//                     .then((response) => response.json())
+//                     .then((data) => console.log("data:" + data));
 
-                // Call REST API to get the post's information
-                fetch(url, { credentials: "same-origin" })
-                    .then((response) => {
-                        if (!response.ok) throw Error(response.statusText);
-                        return response.json();
-                    })
-                    .then((data) => {
-                        // If ignoreStaleRequest was set to true, we want to ignore the results of the
-                        // the request. Otherwise, update the state to trigger a new render.
-                        if (!ignoreStaleRequest) {
-                            var newData = JSON.stringify(Math.trunc(data[0]["value"]["average"])) + " gm<sup>-2</sup>d<sup>-1</sup>";
-                            layer.bindPopup(gerText + newData)
-                        }
-                    })
-                    .catch((error) => console.log(error));
+//                 // Call REST API to get the post's information
+//                 fetch(url, { credentials: "same-origin" })
+//                     .then((response) => {
+//                         if (!response.ok) throw Error(response.statusText);
+//                         return response.json();
+//                     })
+//                     .then((data) => {
+//                         // If ignoreStaleRequest was set to true, we want to ignore the results of the
+//                         // the request. Otherwise, update the state to trigger a new render.
+//                         if (!ignoreStaleRequest) {
+//                             var newData = JSON.stringify(Math.trunc(data[0]["value"]["average"])) + " gm<sup>-2</sup>d<sup>-1</sup>";
+//                             layer.bindPopup(gerText + newData)
+//                         }
+//                     })
+//                     .catch((error) => console.log(error));
 
-                feature.properties.id = "gerText";
-            }
-        }).addTo(map);
+//                 feature.properties.id = "gerText";
+//             }
+//         }).addTo(map);
 
-        L.geoJSON(china, {
-            onEachFeature: function (feature, layer) {
-                let url = "https://api.v2.emissions-api.org/api/v2/methane/statistics.json?countryCN&interval=year&begin=2021-01-01&end=2021-12-31&limit=10&offset=0";
-                // Declare a boolean flag that we can use to cancel the API request.
-                let ignoreStaleRequest = false;
+//         L.geoJSON(china, {
+//             onEachFeature: function (feature, layer) {
+//                 let url = "https://api.v2.emissions-api.org/api/v2/methane/statistics.json?countryCN&interval=year&begin=2021-01-01&end=2021-12-31&limit=10&offset=0";
+//                 // Declare a boolean flag that we can use to cancel the API request.
+//                 let ignoreStaleRequest = false;
 
-                fetch(url)
-                    .then((response) => response.json())
-                    .then((data) => console.log("data:" + data));
+//                 fetch(url)
+//                     .then((response) => response.json())
+//                     .then((data) => console.log("data:" + data));
 
-                // Call REST API to get the post's information
-                fetch(url, { credentials: "same-origin" })
-                    .then((response) => {
-                        if (!response.ok) throw Error(response.statusText);
-                        return response.json();
-                    })
-                    .then((data) => {
-                        // If ignoreStaleRequest was set to true, we want to ignore the results of the
-                        // the request. Otherwise, update the state to trigger a new render.
-                        if (!ignoreStaleRequest) {
-                            var newData = JSON.stringify(Math.trunc(data[0]["value"]["average"])) + " gm<sup>-2</sup>d<sup>-1</sup>";
-                            layer.bindPopup(chinaText + newData)
-                        }
-                    })
-                    .catch((error) => console.log(error));
+//                 // Call REST API to get the post's information
+//                 fetch(url, { credentials: "same-origin" })
+//                     .then((response) => {
+//                         if (!response.ok) throw Error(response.statusText);
+//                         return response.json();
+//                     })
+//                     .then((data) => {
+//                         // If ignoreStaleRequest was set to true, we want to ignore the results of the
+//                         // the request. Otherwise, update the state to trigger a new render.
+//                         if (!ignoreStaleRequest) {
+//                             var newData = JSON.stringify(Math.trunc(data[0]["value"]["average"])) + " gm<sup>-2</sup>d<sup>-1</sup>";
+//                             layer.bindPopup(chinaText + newData)
+//                         }
+//                     })
+//                     .catch((error) => console.log(error));
 
-                feature.properties.id = "chinaText";
-            }
-        }).addTo(map);
+//                 feature.properties.id = "chinaText";
+//             }
+//         }).addTo(map);
 
-        L.geoJSON(chile, {
-            onEachFeature: function (feature, layer) {
-                let url = "https://api.v2.emissions-api.org/api/v2/methane/statistics.json?countryCHL&interval=year&begin=2021-01-01&end=2021-12-31&limit=10&offset=0";
-                // Declare a boolean flag that we can use to cancel the API request.
-                let ignoreStaleRequest = false;
+//         L.geoJSON(chile, {
+//             onEachFeature: function (feature, layer) {
+//                 let url = "https://api.v2.emissions-api.org/api/v2/methane/statistics.json?countryCHL&interval=year&begin=2021-01-01&end=2021-12-31&limit=10&offset=0";
+//                 // Declare a boolean flag that we can use to cancel the API request.
+//                 let ignoreStaleRequest = false;
 
-                fetch(url)
-                    .then((response) => response.json())
-                    .then((data) => console.log("data:" + data));
+//                 fetch(url)
+//                     .then((response) => response.json())
+//                     .then((data) => console.log("data:" + data));
 
-                // Call REST API to get the post's information
-                fetch(url, { credentials: "same-origin" })
-                    .then((response) => {
-                        if (!response.ok) throw Error(response.statusText);
-                        return response.json();
-                    })
-                    .then((data) => {
-                        // If ignoreStaleRequest was set to true, we want to ignore the results of the
-                        // the request. Otherwise, update the state to trigger a new render.
-                        if (!ignoreStaleRequest) {
-                            var newData = JSON.stringify(Math.trunc(data[0]["value"]["average"])) + " gm<sup>-2</sup>d<sup>-1</sup>";
-                            layer.bindPopup(chileText + newData)
-                        }
-                    })
-                    .catch((error) => console.log(error));
+//                 // Call REST API to get the post's information
+//                 fetch(url, { credentials: "same-origin" })
+//                     .then((response) => {
+//                         if (!response.ok) throw Error(response.statusText);
+//                         return response.json();
+//                     })
+//                     .then((data) => {
+//                         // If ignoreStaleRequest was set to true, we want to ignore the results of the
+//                         // the request. Otherwise, update the state to trigger a new render.
+//                         if (!ignoreStaleRequest) {
+//                             var newData = JSON.stringify(Math.trunc(data[0]["value"]["average"])) + " gm<sup>-2</sup>d<sup>-1</sup>";
+//                             layer.bindPopup(chileText + newData)
+//                         }
+//                     })
+//                     .catch((error) => console.log(error));
 
-                feature.properties.id = "chileText";
-            }
-        }).addTo(map);
+//                 feature.properties.id = "chileText";
+//             }
+//         }).addTo(map);
 
-        L.geoJSON(kenya, {
-            onEachFeature: function (feature, layer) {
-                let url = "https://api.v2.emissions-api.org/api/v2/methane/statistics.json?countryKEN&interval=year&begin=2021-01-01&end=2021-12-31&limit=10&offset=0";
-                // Declare a boolean flag that we can use to cancel the API request.
-                let ignoreStaleRequest = false;
+//         L.geoJSON(kenya, {
+//             onEachFeature: function (feature, layer) {
+//                 let url = "https://api.v2.emissions-api.org/api/v2/methane/statistics.json?countryKEN&interval=year&begin=2021-01-01&end=2021-12-31&limit=10&offset=0";
+//                 // Declare a boolean flag that we can use to cancel the API request.
+//                 let ignoreStaleRequest = false;
 
-                fetch(url)
-                    .then((response) => response.json())
-                    .then((data) => console.log("data:" + data));
+//                 fetch(url)
+//                     .then((response) => response.json())
+//                     .then((data) => console.log("data:" + data));
 
-                // Call REST API to get the post's information
-                fetch(url, { credentials: "same-origin" })
-                    .then((response) => {
-                        if (!response.ok) throw Error(response.statusText);
-                        return response.json();
-                    })
-                    .then((data) => {
-                        // If ignoreStaleRequest was set to true, we want to ignore the results of the
-                        // the request. Otherwise, update the state to trigger a new render.
-                        if (!ignoreStaleRequest) {
-                            var newData = JSON.stringify(Math.trunc(data[0]["value"]["average"])) + " gm<sup>-2</sup>d<sup>-1</sup>";
-                            layer.bindPopup(kenyaText + newData)
-                        }
-                    })
-                    .catch((error) => console.log(error));
+//                 // Call REST API to get the post's information
+//                 fetch(url, { credentials: "same-origin" })
+//                     .then((response) => {
+//                         if (!response.ok) throw Error(response.statusText);
+//                         return response.json();
+//                     })
+//                     .then((data) => {
+//                         // If ignoreStaleRequest was set to true, we want to ignore the results of the
+//                         // the request. Otherwise, update the state to trigger a new render.
+//                         if (!ignoreStaleRequest) {
+//                             var newData = JSON.stringify(Math.trunc(data[0]["value"]["average"])) + " gm<sup>-2</sup>d<sup>-1</sup>";
+//                             layer.bindPopup(kenyaText + newData)
+//                         }
+//                     })
+//                     .catch((error) => console.log(error));
 
-                feature.properties.id = "kenyaText";
-            }
-        }).addTo(map);
+//                 feature.properties.id = "kenyaText";
+//             }
+//         }).addTo(map);
 
-        L.geoJSON(brazil, {
-            onEachFeature: function (feature, layer) {
-                let url = "https://api.v2.emissions-api.org/api/v2/methane/statistics.json?countryBRA&interval=year&begin=2021-01-01&end=2021-12-31&limit=10&offset=0";
-                // Declare a boolean flag that we can use to cancel the API request.
-                let ignoreStaleRequest = false;
+//         L.geoJSON(brazil, {
+//             onEachFeature: function (feature, layer) {
+//                 let url = "https://api.v2.emissions-api.org/api/v2/methane/statistics.json?countryBRA&interval=year&begin=2021-01-01&end=2021-12-31&limit=10&offset=0";
+//                 // Declare a boolean flag that we can use to cancel the API request.
+//                 let ignoreStaleRequest = false;
 
-                fetch(url)
-                    .then((response) => response.json())
-                    .then((data) => console.log("data:" + data));
+//                 fetch(url)
+//                     .then((response) => response.json())
+//                     .then((data) => console.log("data:" + data));
 
-                // Call REST API to get the post's information
-                fetch(url, { credentials: "same-origin" })
-                    .then((response) => {
-                        if (!response.ok) throw Error(response.statusText);
-                        return response.json();
-                    })
-                    .then((data) => {
-                        // If ignoreStaleRequest was set to true, we want to ignore the results of the
-                        // the request. Otherwise, update the state to trigger a new render.
-                        if (!ignoreStaleRequest) {
-                            var newData = JSON.stringify(Math.trunc(data[0]["value"]["average"])) + " gm<sup>-2</sup>d<sup>-1</sup>";
-                            layer.bindPopup(brazilText + newData)
-                        }
-                    })
-                    .catch((error) => console.log(error));
+//                 // Call REST API to get the post's information
+//                 fetch(url, { credentials: "same-origin" })
+//                     .then((response) => {
+//                         if (!response.ok) throw Error(response.statusText);
+//                         return response.json();
+//                     })
+//                     .then((data) => {
+//                         // If ignoreStaleRequest was set to true, we want to ignore the results of the
+//                         // the request. Otherwise, update the state to trigger a new render.
+//                         if (!ignoreStaleRequest) {
+//                             var newData = JSON.stringify(Math.trunc(data[0]["value"]["average"])) + " gm<sup>-2</sup>d<sup>-1</sup>";
+//                             layer.bindPopup(brazilText + newData)
+//                         }
+//                     })
+//                     .catch((error) => console.log(error));
 
-                feature.properties.id = "brazilText";
-            }
-        }).addTo(map);
+//                 feature.properties.id = "brazilText";
+//             }
+//         }).addTo(map);
 
-        L.geoJSON(nicaragua, {
-            onEachFeature: function (feature, layer) {
-                let url = "https://api.v2.emissions-api.org/api/v2/methane/statistics.json?countryNIC&interval=year&begin=2021-01-01&end=2021-12-31&limit=10&offset=0";
-                // Declare a boolean flag that we can use to cancel the API request.
-                let ignoreStaleRequest = false;
+//         L.geoJSON(nicaragua, {
+//             onEachFeature: function (feature, layer) {
+//                 let url = "https://api.v2.emissions-api.org/api/v2/methane/statistics.json?countryNIC&interval=year&begin=2021-01-01&end=2021-12-31&limit=10&offset=0";
+//                 // Declare a boolean flag that we can use to cancel the API request.
+//                 let ignoreStaleRequest = false;
 
-                fetch(url)
-                    .then((response) => response.json())
-                    .then((data) => console.log("data:" + data));
+//                 fetch(url)
+//                     .then((response) => response.json())
+//                     .then((data) => console.log("data:" + data));
 
-                // Call REST API to get the post's information
-                fetch(url, { credentials: "same-origin" })
-                    .then((response) => {
-                        if (!response.ok) throw Error(response.statusText);
-                        return response.json();
-                    })
-                    .then((data) => {
-                        // If ignoreStaleRequest was set to true, we want to ignore the results of the
-                        // the request. Otherwise, update the state to trigger a new render.
-                        if (!ignoreStaleRequest) {
-                            var newData = JSON.stringify(Math.trunc(data[0]["value"]["average"])) + " gm<sup>-2</sup>d<sup>-1</sup>";
-                            layer.bindPopup(nicaraguaText + newData)
-                        }
-                    })
-                    .catch((error) => console.log(error));
+//                 // Call REST API to get the post's information
+//                 fetch(url, { credentials: "same-origin" })
+//                     .then((response) => {
+//                         if (!response.ok) throw Error(response.statusText);
+//                         return response.json();
+//                     })
+//                     .then((data) => {
+//                         // If ignoreStaleRequest was set to true, we want to ignore the results of the
+//                         // the request. Otherwise, update the state to trigger a new render.
+//                         if (!ignoreStaleRequest) {
+//                             var newData = JSON.stringify(Math.trunc(data[0]["value"]["average"])) + " gm<sup>-2</sup>d<sup>-1</sup>";
+//                             layer.bindPopup(nicaraguaText + newData)
+//                         }
+//                     })
+//                     .catch((error) => console.log(error));
 
-                feature.properties.id = "nicaraguaText";
-            }
-        }).addTo(map);
+//                 feature.properties.id = "nicaraguaText";
+//             }
+//         }).addTo(map);
 
         L.geoJSON(samoa, {
             onEachFeature: function (feature, layer) {
@@ -535,36 +535,36 @@
             }
         }).addTo(map);
 
-        L.geoJSON(usa, {
-            onEachFeature: function (feature, layer) {
-                let url = "https://api.v2.emissions-api.org/api/v2/methane/statistics.json?country=USA&interval=year&begin=2021-01-01&end=2021-12-31&limit=10&offset=0";
-                // Declare a boolean flag that we can use to cancel the API request.
-                let ignoreStaleRequest = false;
+//         L.geoJSON(usa, {
+//             onEachFeature: function (feature, layer) {
+//                 let url = "https://api.v2.emissions-api.org/api/v2/methane/statistics.json?country=USA&interval=year&begin=2021-01-01&end=2021-12-31&limit=10&offset=0";
+//                 // Declare a boolean flag that we can use to cancel the API request.
+//                 let ignoreStaleRequest = false;
 
-                fetch(url)
-                    .then((response) => response.json())
-                    .then((data) => console.log("data:" + data));
+//                 fetch(url)
+//                     .then((response) => response.json())
+//                     .then((data) => console.log("data:" + data));
 
-                // Call REST API to get the post's information
-                fetch(url, { credentials: "same-origin" })
-                    .then((response) => {
-                        if (!response.ok) throw Error(response.statusText);
-                        return response.json();
-                    })
-                    .then((data) => {
-                        // If ignoreStaleRequest was set to true, we want to ignore the results of the
-                        // the request. Otherwise, update the state to trigger a new render.
-                        if (!ignoreStaleRequest) {
-                            var newData = JSON.stringify(Math.trunc(data[0]["value"]["average"])) + " gm<sup>-2</sup>d<sup>-1</sup>";
-                            layer.bindPopup(usaText + newData)
-                        }
-                    })
-                    .catch((error) => console.log(error));
+//                 // Call REST API to get the post's information
+//                 fetch(url, { credentials: "same-origin" })
+//                     .then((response) => {
+//                         if (!response.ok) throw Error(response.statusText);
+//                         return response.json();
+//                     })
+//                     .then((data) => {
+//                         // If ignoreStaleRequest was set to true, we want to ignore the results of the
+//                         // the request. Otherwise, update the state to trigger a new render.
+//                         if (!ignoreStaleRequest) {
+//                             var newData = JSON.stringify(Math.trunc(data[0]["value"]["average"])) + " gm<sup>-2</sup>d<sup>-1</sup>";
+//                             layer.bindPopup(usaText + newData)
+//                         }
+//                     })
+//                     .catch((error) => console.log(error));
 
-                feature.properties.id = "usaText";
-            }
-            //layer.bindPopup(usaText)
-        }).addTo(map);
+//                 feature.properties.id = "usaText";
+//             }
+//             //layer.bindPopup(usaText)
+//         }).addTo(map);
 
         L.geoJSON(singapore, {
             onEachFeature: function (feature, layer) {
@@ -572,95 +572,95 @@
             }
         }).addTo(map);
 
-        L.geoJSON(india, {
-            onEachFeature: function (feature, layer) {
-                let url = "https://api.v2.emissions-api.org/api/v2/methane/statistics.json?country=IND&interval=year&begin=2021-01-01&end=2021-12-31&limit=10&offset=0";
-                // Declare a boolean flag that we can use to cancel the API request.
-                let ignoreStaleRequest = false;
+//         L.geoJSON(india, {
+//             onEachFeature: function (feature, layer) {
+//                 let url = "https://api.v2.emissions-api.org/api/v2/methane/statistics.json?country=IND&interval=year&begin=2021-01-01&end=2021-12-31&limit=10&offset=0";
+//                 // Declare a boolean flag that we can use to cancel the API request.
+//                 let ignoreStaleRequest = false;
 
-                fetch(url)
-                    .then((response) => response.json())
-                    .then((data) => console.log("data:" + data));
+//                 fetch(url)
+//                     .then((response) => response.json())
+//                     .then((data) => console.log("data:" + data));
 
-                // Call REST API to get the post's information
-                fetch(url, { credentials: "same-origin" })
-                    .then((response) => {
-                        if (!response.ok) throw Error(response.statusText);
-                        return response.json();
-                    })
-                    .then((data) => {
-                        // If ignoreStaleRequest was set to true, we want to ignore the results of the
-                        // the request. Otherwise, update the state to trigger a new render.
-                        if (!ignoreStaleRequest) {
-                            var newData = JSON.stringify(Math.trunc(data[0]["value"]["average"])) + " gm<sup>-2</sup>d<sup>-1</sup>";
-                            layer.bindPopup(indiaText + newData)
-                        }
-                    })
-                    .catch((error) => console.log(error));
+//                 // Call REST API to get the post's information
+//                 fetch(url, { credentials: "same-origin" })
+//                     .then((response) => {
+//                         if (!response.ok) throw Error(response.statusText);
+//                         return response.json();
+//                     })
+//                     .then((data) => {
+//                         // If ignoreStaleRequest was set to true, we want to ignore the results of the
+//                         // the request. Otherwise, update the state to trigger a new render.
+//                         if (!ignoreStaleRequest) {
+//                             var newData = JSON.stringify(Math.trunc(data[0]["value"]["average"])) + " gm<sup>-2</sup>d<sup>-1</sup>";
+//                             layer.bindPopup(indiaText + newData)
+//                         }
+//                     })
+//                     .catch((error) => console.log(error));
 
-                feature.properties.id = "indiaText";
-            }
-        }).addTo(map);
+//                 feature.properties.id = "indiaText";
+//             }
+//         }).addTo(map);
 
-        L.geoJSON(nigeria, {
-            onEachFeature: function (feature, layer) {
-                let url = "https://api.v2.emissions-api.org/api/v2/methane/statistics.json?country=NGA&interval=year&begin=2021-01-01&end=2021-12-31&limit=10&offset=0";
-                // Declare a boolean flag that we can use to cancel the API request.
-                let ignoreStaleRequest = false;
+//         L.geoJSON(nigeria, {
+//             onEachFeature: function (feature, layer) {
+//                 let url = "https://api.v2.emissions-api.org/api/v2/methane/statistics.json?country=NGA&interval=year&begin=2021-01-01&end=2021-12-31&limit=10&offset=0";
+//                 // Declare a boolean flag that we can use to cancel the API request.
+//                 let ignoreStaleRequest = false;
 
-                fetch(url)
-                    .then((response) => response.json())
-                    .then((data) => console.log("data:" + data));
+//                 fetch(url)
+//                     .then((response) => response.json())
+//                     .then((data) => console.log("data:" + data));
 
-                // Call REST API to get the post's information
-                fetch(url, { credentials: "same-origin" })
-                    .then((response) => {
-                        if (!response.ok) throw Error(response.statusText);
-                        return response.json();
-                    })
-                    .then((data) => {
-                        // If ignoreStaleRequest was set to true, we want to ignore the results of the
-                        // the request. Otherwise, update the state to trigger a new render.
-                        if (!ignoreStaleRequest) {
-                            var newData = JSON.stringify(Math.trunc(data[0]["value"]["average"])) + " gm<sup>-2</sup>d<sup>-1</sup>";
-                            layer.bindPopup(nigeriaText + newData)
-                        }
-                    })
-                    .catch((error) => console.log(error));
+//                 // Call REST API to get the post's information
+//                 fetch(url, { credentials: "same-origin" })
+//                     .then((response) => {
+//                         if (!response.ok) throw Error(response.statusText);
+//                         return response.json();
+//                     })
+//                     .then((data) => {
+//                         // If ignoreStaleRequest was set to true, we want to ignore the results of the
+//                         // the request. Otherwise, update the state to trigger a new render.
+//                         if (!ignoreStaleRequest) {
+//                             var newData = JSON.stringify(Math.trunc(data[0]["value"]["average"])) + " gm<sup>-2</sup>d<sup>-1</sup>";
+//                             layer.bindPopup(nigeriaText + newData)
+//                         }
+//                     })
+//                     .catch((error) => console.log(error));
 
-                feature.properties.id = "nigeriaText";
-            }
-        }).addTo(map);
+//                 feature.properties.id = "nigeriaText";
+//             }
+//         }).addTo(map);
 
-        L.geoJSON(russia, {
-            onEachFeature: function (feature, layer) {
-                let url = "https://api.v2.emissions-api.org/api/v2/methane/statistics.json?country=RUS&interval=year&begin=2021-01-01&end=2021-12-31&limit=10&offset=0";
-                // Declare a boolean flag that we can use to cancel the API request.
-                let ignoreStaleRequest = false;
+//         L.geoJSON(russia, {
+//             onEachFeature: function (feature, layer) {
+//                 let url = "https://api.v2.emissions-api.org/api/v2/methane/statistics.json?country=RUS&interval=year&begin=2021-01-01&end=2021-12-31&limit=10&offset=0";
+//                 // Declare a boolean flag that we can use to cancel the API request.
+//                 let ignoreStaleRequest = false;
 
-                fetch(url)
-                    .then((response) => response.json())
-                    .then((data) => console.log("data:" + data));
+//                 fetch(url)
+//                     .then((response) => response.json())
+//                     .then((data) => console.log("data:" + data));
 
-                // Call REST API to get the post's information
-                fetch(url, { credentials: "same-origin" })
-                    .then((response) => {
-                        if (!response.ok) throw Error(response.statusText);
-                        return response.json();
-                    })
-                    .then((data) => {
-                        // If ignoreStaleRequest was set to true, we want to ignore the results of the
-                        // the request. Otherwise, update the state to trigger a new render.
-                        if (!ignoreStaleRequest) {
-                            var newData = JSON.stringify(Math.trunc(data[0]["value"]["average"])) + " gm<sup>-2</sup>d<sup>-1</sup>";
-                            layer.bindPopup(russiaText + newData)
-                        }
-                    })
-                    .catch((error) => console.log(error));
+//                 // Call REST API to get the post's information
+//                 fetch(url, { credentials: "same-origin" })
+//                     .then((response) => {
+//                         if (!response.ok) throw Error(response.statusText);
+//                         return response.json();
+//                     })
+//                     .then((data) => {
+//                         // If ignoreStaleRequest was set to true, we want to ignore the results of the
+//                         // the request. Otherwise, update the state to trigger a new render.
+//                         if (!ignoreStaleRequest) {
+//                             var newData = JSON.stringify(Math.trunc(data[0]["value"]["average"])) + " gm<sup>-2</sup>d<sup>-1</sup>";
+//                             layer.bindPopup(russiaText + newData)
+//                         }
+//                     })
+//                     .catch((error) => console.log(error));
 
-                feature.properties.id = "russiaText";
-            }
-        }).addTo(map);
+//                 feature.properties.id = "russiaText";
+//             }
+//         }).addTo(map);
 
         //         geoJsonLayer.eachLayer(function (layer) {
         //             layer._path.id = 'feature-' + layer.feature.properties.id;
